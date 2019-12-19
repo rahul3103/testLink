@@ -1,6 +1,13 @@
-import React from 'react'
-import Head from 'next/head'
-import Nav from '../components/nav'
+import React from "react";
+import Head from "next/head";
+import Nav from "../components/nav";
+import Link from "next/link";
+
+const MyButton = React.forwardRef(({ onClick, href }, ref) => (
+  <a href={href} onClick={console.log} ref={ref}>
+    Click Me
+  </a>
+));
 
 const Home = () => (
   <div>
@@ -17,6 +24,18 @@ const Home = () => (
         To get started, edit <code>pages/index.js</code> and save to reload.
       </p>
 
+      <div>
+        Nolink : -{" "}
+        <Link href="/about">
+          <MyButton />
+        </Link>
+        <div>
+          Rerenders Whole Page : -{" "}
+          <Link passHref href="/about">
+            <MyButton />
+          </Link>{" "}
+        </div>
+      </div>
       <div className="row">
         <a href="https://nextjs.org/docs" className="card">
           <h3>Documentation &rarr;</h3>
@@ -83,6 +102,6 @@ const Home = () => (
       }
     `}</style>
   </div>
-)
+);
 
-export default Home
+export default Home;
